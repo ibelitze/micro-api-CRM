@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./styles.css">
+
+    <title>Prueba para el AWS</title>
+</head>
+<body>
+    <h2>Suba un archivo de texto</h2>
+
+    <form method="post" enctype="multipart/form-data">
+      <label for="file">Suba su archivo de texto</label>
+      <input id="file" name="file" type="file" />
+      <button>Subir</button>
+    </form>
+
+
+    <script type="text/javascript">
+
+        const form = document.querySelector('form');
+        form.addEventListener('submit', handleSubmit);
+
+        function handleSubmit(event) {
+            let photo = document.getElementById("file").files[0];
+            let formData = new FormData();
+                 
+            formData.append("imagen", photo);
+            fetch('http://localhost:3000/textract/upload', {method: "POST", body: formData});
+        }
+    </script>
+</body>
+</html>
